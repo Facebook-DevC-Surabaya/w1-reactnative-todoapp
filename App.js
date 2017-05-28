@@ -5,9 +5,10 @@ import {
   ScrollView,
   Text,
   TextInput,
-  TouchableHighlight,
   View
 } from 'react-native';
+
+import List from './List';
 
 export default class App extends React.Component {
 
@@ -84,20 +85,7 @@ export default class App extends React.Component {
 
           {/* Tampilan todos jika ada */}
           {this.state.todos.length > 0 &&
-            <View>
-              {
-                this.state.todos.map((todo, idx) =>
-                  <TouchableHighlight
-                    key={idx}
-                    onPress={() => this.remove(todo)}
-                  >
-                    <Text style={styles.todo}>
-                      - {todo}
-                    </Text>
-                  </TouchableHighlight>
-                )
-              }
-            </View>
+            <List items={this.state.todos} onRemove={this.remove} />
           }
         </View>
       </ScrollView>
@@ -123,7 +111,4 @@ const styles = StyleSheet.create({
     right: 0,
     height: 30,
   },
-  todo: {
-    marginBottom: 20
-  }
 });
